@@ -1,4 +1,29 @@
 package com.iot_consumer_worker.uditha97.model;
 
+
+import io.swagger.v3.oas.annotations.media.Schema;
+import jakarta.persistence.*;
+import lombok.Data;
+
+import java.time.Instant;
+
+@Entity
+@Data
+@Table(name = "telemetry", indexes = {
+        @Index(name = "idx_device_ts", columnList = "deviceId,timestamp")
+})
+
 public class Telemetry {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @Column(nullable = false)
+    private String deviceId;
+
+    @Column(nullable = false)
+    private Instant timestamp;
+
+    @Column(columnDefinition = "json")
+    private String payload;
 }
