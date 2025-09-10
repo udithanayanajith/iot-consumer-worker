@@ -1,26 +1,44 @@
+spring:
+  main:
+    allow-circular-references: true
 
-kafka:
-  bootstrap-servers: localhost:9092
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: root
+    password:
+    url: jdbc:mysql://localhost:3306/iotdatabase?useSSL=false&createDatabaseIfNotExist=true
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+      dialect: org.hibernate.dialect.MySQL8Dialect
+
+  kafka:
+    bootstrap-servers: host.docker.internal:9092
+    consumer:
+      group-id: iot-telemetry-group
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      auto-offset-reset: earliest
+      enable-auto-commit: false
+      max-poll-records: 500
+      properties:
+        spring.json.trusted.packages: "*"
+      listener:
+        ack-mode: MANUAL_IMMEDIATE
+        concurrency: 3
 
 server:
   port: 8081
+  address: 0.0.0.0
 
-  spring:
-    main:
-      allow-circular-references: true
-    datasource:
-      driver-class-name: com.mysql.cj.jdbc.Driver
-      password:
-      username: root
-      url: jdbc:mysql://localhost:3306/iotdatabase?useSSL=true&requireSSL=false&createDatabaseIfNotExist=true
-
-    jpa:
-      hibernate:
-        ddl-auto: update
-        naming:
-          physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
-        dialect: MySQL8Dialect
-
-  logging:
-    level:
-      org.springframework: DEBUG
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics,prometheus
+  endpoint:
+    prometheus:
+      enabled: true
