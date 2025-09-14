@@ -132,3 +132,5 @@ To handle increased load:
 *   Consider partitioning the Kafka topic by device ID for better parallelism
 
 **Note:** Ensure that Kafka and MySQL are running before starting the application. The database tables will be created automatically if they don't exist.
+
+[Demo.pdf](Extra%20Things/Demo.pdf)

@@ -12,12 +12,22 @@ import org.springframework.kafka.core.DefaultKafkaConsumerFactory;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * Configuration class for Kafka consumer settings.
+ * Configures consumer factories and listener containers for telemetry processing.
+ */
 @Configuration
 public class KafkaConsumerConfig {
 
     @Value("${spring.kafka.bootstrap-servers}")
     private String bootstrapServers;
 
+    /**
+     * Creates and configures the Kafka consumer factory.
+     * Sets up connection properties, deserializers, and consumer behavior.
+     *
+     * @return configured ConsumerFactory for String key/value pairs
+     */
     @Bean
     public ConsumerFactory<String, String> consumerFactory() {
         Map<String, Object> props = new HashMap<>();
@@ -31,6 +41,12 @@ public class KafkaConsumerConfig {
         return new DefaultKafkaConsumerFactory<>(props);
     }
 
+    /**
+     * Configures the Kafka listener container factory.
+     * Sets concurrency and timeout settings for message processing.
+     *
+     * @return configured ConcurrentKafkaListenerContainerFactory
+     */
     @Bean
     public ConcurrentKafkaListenerContainerFactory<String, String> kafkaListenerContainerFactory() {
         ConcurrentKafkaListenerContainerFactory<String, String> factory =

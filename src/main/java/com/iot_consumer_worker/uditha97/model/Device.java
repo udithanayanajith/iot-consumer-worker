@@ -6,6 +6,10 @@ import lombok.Data;
 
 import java.time.Instant;
 
+/**
+ * Entity class representing IoT devices in the system.
+ * Stores device metadata and registration information.
+ */
 @Entity
 @Data
 @Table(name = "device")

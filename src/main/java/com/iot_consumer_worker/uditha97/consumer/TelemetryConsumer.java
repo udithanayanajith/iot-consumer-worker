@@ -13,6 +13,10 @@ import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Kafka consumer component for processing telemetry messages.
+ * Listens to telemetry topic, validates devices, and stores telemetry data.
+ */
 @Component
 public class TelemetryConsumer {
 
@@ -26,6 +30,13 @@ public class TelemetryConsumer {
         this.deviceRepository = deviceRepository;
     }
 
+    /**
+     * Kafka listener method that processes telemetry messages.
+     * Validates device existence, parses readings, and saves to database in batch.
+     *
+     * @param message the JSON message received from Kafka
+     * @throws Exception if message parsing or processing fails
+     */
     @KafkaListener(topics = "telemetry", containerFactory = "kafkaListenerContainerFactory")
     @Transactional
     public void consume(String message) throws Exception {

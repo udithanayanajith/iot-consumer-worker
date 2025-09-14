@@ -6,6 +6,10 @@ import lombok.Data;
 
 import java.time.Instant;
 
+/**
+ * Entity class representing telemetry data from IoT devices.
+ * Maps to database table with indexing for performance.
+ */
 @Entity
 @Data
 @Table(name = "telemetry", indexes = {
