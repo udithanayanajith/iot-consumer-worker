@@ -16,7 +16,7 @@ spring:
       dialect: org.hibernate.dialect.MySQL8Dialect
 
   kafka:
-    bootstrap-servers: host.docker.internal:9092
+    bootstrap-servers: localhost:8092
     consumer:
       group-id: iot-telemetry-group
       key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
@@ -26,9 +26,9 @@ spring:
       max-poll-records: 500
       properties:
         spring.json.trusted.packages: "*"
-      listener:
-        ack-mode: MANUAL_IMMEDIATE
-        concurrency: 3
+    listener:
+      ack-mode: MANUAL_IMMEDIATE
+      concurrency: 3
 
 server:
   port: 8081
@@ -42,3 +42,9 @@ management:
   endpoint:
     prometheus:
       enabled: true
+
+#logging:
+#  level:
+#    org.springframework: DEBUG
+#    org.apache.kafka: DEBUG
+#    com.iot_consumer_worker: DEBUG

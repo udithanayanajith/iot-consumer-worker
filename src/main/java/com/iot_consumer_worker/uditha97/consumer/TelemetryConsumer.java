@@ -4,7 +4,7 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.iot_consumer_worker.uditha97.model.Telemetry;
 import com.iot_consumer_worker.uditha97.repository.TelemetryRepository;
-import com.iot_consumer_worker.uditha97.repository.DeviceRepository; // New repository
+import com.iot_consumer_worker.uditha97.repository.DeviceRepository;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
