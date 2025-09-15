@@ -133,4 +133,4 @@ To handle increased load:
 
 **Note:** Ensure that Kafka and MySQL are running before starting the application. The database tables will be created automatically if they don't exist.
 
-[Demo.pdf](Extra%20Things/Demo.pdf)
+[IoT Data Processing System Comprehensive Documentation.pdf](Extra%20Things/IoT Data Processing System Comprehensive Documentation.pdf)
